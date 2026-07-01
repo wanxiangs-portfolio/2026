@@ -1979,6 +1979,86 @@
       }
     }
 
+    /* v12: mobile hero uses the full rectangular image and keeps overlays light */
+    .mobile-desktop-note {
+      display: none;
+    }
+
+    .local-demo-video {
+      display: block;
+      width: 100%;
+      min-height: 280px;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      background: var(--black);
+    }
+
+    @media (max-width: 840px) {
+      .hero {
+        height: auto;
+        min-height: 0;
+        overflow: visible;
+        background: var(--paper);
+      }
+
+      .hero::after {
+        display: none;
+      }
+
+      .hero-stage {
+        position: relative;
+        inset: auto;
+        display: block;
+        width: 100%;
+        background: #d9d9d7;
+      }
+
+      .hero-art {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        object-fit: contain;
+        object-position: center top;
+      }
+
+      .mobile-card-stack {
+        position: relative;
+        inset: auto;
+        display: block;
+        width: auto;
+        margin: clamp(-34px, -6vw, -22px) 0 0;
+        padding: 0 18px 22px;
+        pointer-events: none;
+      }
+
+      .mobile-card-stack > * {
+        pointer-events: auto;
+      }
+
+      .skills-card {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        max-height: none;
+      }
+
+      .call-strip {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        margin-top: 8px;
+      }
+
+      .mobile-desktop-note {
+        display: block;
+        margin: 10px 0 0;
+        color: var(--ink-soft);
+        font-size: 12px;
+        font-weight: 800;
+        text-align: center;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2029,6 +2109,8 @@
               <span class="call-phone" aria-hidden="true">📞</span>
             </a>
           </div>
+
+          <p class="mobile-desktop-note">View on desktop for a better experience</p>
         </div>
       </section>
 
@@ -4026,7 +4108,10 @@
                     <h3 class="embed-card-title">Gemini API + Google Sheet data sorting automation</h3>
                   </div>
                   <div class="embed-body">
-                    <iframe src="https://geo.dailymotion.com/player.html?video=xak0ppy&autoplay=0&mute=1" title="Dailymotion Video Player" allow="fullscreen; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <video class="local-demo-video" controls muted playsinline preload="metadata">
+                      <source src="new-data-sorting-automation-demo.mp4" type="video/mp4">
+                      Your browser does not support the video tag. <a href="new-data-sorting-automation-demo.mp4">Open the demo video</a>.
+                    </video>
                   </div>
                   <div class="card-meta">
                     <p>Gemini API + Google Sheet data sorting automation</p>
