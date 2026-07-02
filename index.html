@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -4108,9 +4109,9 @@
                     <h3 class="embed-card-title">Gemini API + Google Sheet data sorting automation</h3>
                   </div>
                   <div class="embed-body">
-                    <video class="local-demo-video" controls muted playsinline preload="metadata">
-                      <source src="new-data-sorting-automation-demo.mp4" type="video/mp4">
-                      Your browser does not support the video tag. <a href="new-data-sorting-automation-demo.mp4">Open the demo video</a>.
+                    <video class="local-demo-video" controls playsinline preload="metadata">
+                      <source src="new%20data%20sorting%20automation%20demo.mp4" type="video/mp4">
+                      Your browser does not support the video tag. <a href="new%20data%20sorting%20automation%20demo.mp4">Open the demo video</a>.
                     </video>
                   </div>
                   <div class="card-meta">
@@ -4509,6 +4510,44 @@
       });
     }
 
+    function setupLocalDemoVideos() {
+      const videos = Array.from(document.querySelectorAll(".local-demo-video"));
+      if (!videos.length) return;
+
+      videos.forEach((video) => {
+        video.autoplay = false;
+        video.loop = false;
+        video.removeAttribute("autoplay");
+        video.removeAttribute("loop");
+      });
+
+      if (!window.localDemoVisibilityReady) {
+        window.localDemoVisibilityReady = true;
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden) {
+            videos.forEach((video) => video.pause());
+          }
+        });
+      }
+
+      if (!("IntersectionObserver" in window)) return;
+      if (!window.localDemoVideoObserver) {
+        window.localDemoVideoObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting || entry.intersectionRatio < 0.2) {
+              entry.target.pause();
+            }
+          });
+        }, { threshold: [0, 0.2, 0.6] });
+      }
+
+      videos.forEach((video) => {
+        if (video.dataset.pauseObserved === "true") return;
+        video.dataset.pauseObserved = "true";
+        window.localDemoVideoObserver.observe(video);
+      });
+    }
+
     function getDefaultSubtab(parent) {
       const parentPanel = document.getElementById("panel-" + parent);
       if (!parentPanel) return "";
@@ -4622,10 +4661,12 @@
 
     restorePortfolioState();
     setupDockMagnification();
+    setupLocalDemoVideos();
     setupEmbedFallbacks();
     window.addEventListener("load", () => {
       restorePortfolioState();
       setupDockMagnification();
+      setupLocalDemoVideos();
       refreshEmbeds();
     });
 
@@ -4679,4 +4720,3 @@
   </script>
 </body>
 </html>
-
