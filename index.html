@@ -1,6 +1,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yap Wan Xiang | Portfolio</title>
   <meta name="description" content="Portfolio of Yap Wan Xiang: writer, data specialist, media buyer, and content strategist across SAYS.com, AI reporting, video, and paid media.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050505'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='22' font-weight='900' fill='white'%3EWX%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -1094,6 +1096,21 @@
       aspect-ratio: 16 / 9;
       object-fit: cover;
       background: var(--black);
+    }
+
+    .automation-image-body {
+      min-height: 0;
+      background: var(--white);
+    }
+
+    #panel-automation .automation-image-body {
+      min-height: 0;
+    }
+
+    .automation-workshop-image {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     .embed-refresh-note {
@@ -2238,6 +2255,65 @@
       }
     }
 
+    /* v13: dock-anchored skill card and WX browser tab icon */
+    .skills-card-header {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      gap: 8px;
+      min-height: 48px;
+    }
+
+    .skills-owner {
+      display: inline-flex;
+      min-width: 0;
+      align-items: center;
+      padding: 0 16px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .skills-card .skills-card-header h2 {
+      margin: 0 0 0 auto;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: var(--radius);
+      white-space: nowrap;
+    }
+
+    @media (min-width: 841px) {
+      .hero {
+        --hero-dock-overlap: 176px;
+        --skill-dock-gap: clamp(20px, 3vh, 34px);
+      }
+
+      .skills-card {
+        top: auto;
+        bottom: calc(var(--hero-dock-overlap) + var(--skill-dock-gap));
+        right: max(22px, calc(50vw - 560px));
+      }
+    }
+
+    @media (min-width: 841px) and (max-height: 780px) {
+      .hero {
+        --hero-dock-overlap: 150px;
+        --skill-dock-gap: 18px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .skills-card-header {
+        flex-wrap: wrap;
+      }
+
+      .skills-card .skills-card-header h2 {
+        margin-left: 0;
+        border-bottom-right-radius: var(--radius);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2273,7 +2349,10 @@
 
         <div class="mobile-card-stack">
           <aside class="float-card skills-card">
-            <h2>Skill highlights</h2>
+            <div class="skills-card-header">
+              <span class="skills-owner">Yap Wan Xiang</span>
+              <h2>Skill highlights</h2>
+            </div>
             <ul class="skill-list">
               <li role="button" tabindex="0" data-open-tab="articles" data-open-subtab="finance-business"><strong>Editorial Focus</strong> <span>Politics / Finance</span></li>
               <li role="button" tabindex="0" data-open-tab="automation"><strong>Data Presentation</strong> <span>Over 30+ reports over the past 5 years</span></li>
@@ -4278,7 +4357,7 @@
           </div>
 
           <div class="tab-panel" id="panel-automation" role="tabpanel">
-            <div class="portfolio-collection is-expanded" data-initial-count="6" data-item-count="1">
+            <div class="portfolio-collection is-expanded" data-initial-count="6" data-item-count="2">
               <div class="portfolio-grid">
                 <article class="embed-card portfolio-item">
                   <div class="embed-card-header">
@@ -4296,15 +4375,28 @@
                     <div class="tag-row"><span class="tag green">Data + AI Automation</span><span class="tag">Gemini API</span><span class="tag">Google Sheet</span></div>
                   </div>
                 </article>
+                <article class="embed-card portfolio-item">
+                  <div class="embed-card-header">
+                    <span class="embed-platform automation">Workshop</span>
+                    <h3 class="embed-card-title">Data workshop</h3>
+                  </div>
+                  <div class="embed-body automation-image-body">
+                    <img class="automation-workshop-image" src="WX%20inti%20talk.png" alt="Yap Wan Xiang leading a data workshop for INTI students">
+                  </div>
+                  <div class="card-meta">
+                    <p>Featured in a group-wide email for leading a data workshop for INTI students in May 2026</p>
+                    <div class="tag-row"><span class="tag green">Data + AI Automation</span><span class="tag">Data workshop</span><span class="tag">INTI</span></div>
+                  </div>
+                </article>
               </div>
             </div>
           </div>
 
           <div class="tab-panel" id="panel-freelance" role="tabpanel">
             <div class="subtabs" role="tablist" aria-label="Freelance sections">
-              <button class="subtab-btn active" type="button" data-parent="freelance" data-subtab="full-production-ads">Full production ads</button>
+              <button class="subtab-btn active" type="button" data-parent="freelance" data-subtab="storyboarded-social-reels">Storyboarded social reels</button>
+              <button class="subtab-btn" type="button" data-parent="freelance" data-subtab="full-production-ads">Full production ads</button>
               <button class="subtab-btn" type="button" data-parent="freelance" data-subtab="ai-retargeting-ads">AI retargeting ads</button>
-              <button class="subtab-btn" type="button" data-parent="freelance" data-subtab="storyboarded-social-reels">Storyboarded social reels</button>
             </div>
 
             <div class="embed-refresh-note">
@@ -4312,7 +4404,7 @@
               <button type="button" data-refresh-page>Refresh</button>
             </div>
 
-            <div class="subtab-panel active" id="freelance-full-production-ads">
+            <div class="subtab-panel" id="freelance-full-production-ads">
               <div class="portfolio-collection" data-initial-count="6" data-item-count="2">
                 <div class="portfolio-grid">
                 <article class="embed-card portfolio-item">
@@ -4386,7 +4478,7 @@
               </div>
             </div>
 
-            <div class="subtab-panel" id="freelance-storyboarded-social-reels">
+            <div class="subtab-panel active" id="freelance-storyboarded-social-reels">
               <div class="portfolio-collection" data-initial-count="6" data-item-count="5">
                 <div class="portfolio-grid">
                 <article class="embed-card portfolio-item">
